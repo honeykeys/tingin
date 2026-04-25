@@ -1,0 +1,16 @@
+{
+  "rollouts": [
+    "gpt41_seed42_with_hint.json",
+    "gpt41_seed42_without_hint.json",
+    "gpt41_seed99_with_hint.json",
+    "gpt41_seed99_without_hint.json",
+    "gpt41_seed137_with_hint.json",
+    "gpt41_seed137_without_hint.json"
+  ],
+  "with_hint_count": 3,
+  "without_hint_count": 3,
+  "avg_fidelity_with_hint": 0.818,
+  "avg_fidelity_without_hint": 0.818,
+  "p2_obs_with_hint": 4.67,
+  "p2_obs_without_hint": 3.0
+}
