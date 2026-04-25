@@ -1,0 +1,11 @@
+{
+  "obs_text": "You step to bed 2. Mrs. Aquino's vitals: HR 92, RR 20, SpO2 94, BP 118/76, Temp 37.4. She's quieter than this morning.",
+  "reward": 0.5,
+  "reward_delta_breakdown": {
+    "news2_catch": 0.5,
+    "med_correctness": 0.0,
+    "doc_quality": 0.0
+  },
+  "finished": false,
+  "new_floor_state": {"...": "(same shape as mock_floor_state.json, with tick incremented)"}
+}

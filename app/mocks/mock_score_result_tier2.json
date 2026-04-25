@@ -1,0 +1,15 @@
+{
+  "score": 0.86,
+  "matched_facts": ["P1 identifying info", "P2 identifying info", "P2 ambient signal noted", "P3 identifying info", "P3 pressure ulcer noted", "P3 code status communicated"],
+  "missing_facts": ["P1 expected discharge date"],
+  "tier": 2,
+  "weighted_score": 0.91,
+  "breakdown": [
+    {"fact_id": "P2_ambient", "description": "P2 ambient signal noted (withdrawn, pale)", "weight": 3.0, "matched": true},
+    {"fact_id": "P3_skin", "description": "P3 pressure ulcer status + reposition schedule", "weight": 3.0, "matched": true},
+    {"fact_id": "P2_code_status", "description": "P2 DNR/POLST", "weight": 3.0, "matched": true},
+    {"fact_id": "P1_allergies", "description": "P1 allergies (penicillin)", "weight": 3.0, "matched": true},
+    {"fact_id": "P1_discharge", "description": "P1 expected discharge date", "weight": 1.0, "matched": false},
+    {"fact_id": "P3_bbr", "description": "P3 last BM + bowel program", "weight": 2.0, "matched": true}
+  ]
+}

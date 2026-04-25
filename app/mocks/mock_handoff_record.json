@@ -1,0 +1,9 @@
+{
+  "body": "Census of 3.\n\nBed 1 — Mrs. Patricia Reyes, 84, POD#4 hip ORIF. NEWS2 0. Pain 3/10, last acetaminophen 0830. Enoxaparin given. Allergies: penicillin. Full code. Daughter notified — visiting Saturday. No issues.\n\nBed 2 — Mrs. Elena Aquino, 78, day 6 post-CAP. NEWS2 1 at 0800, trended to 2 by 1500 (RR 20, SpO2 94). DNR/POLST on file, full code otherwise. Allergies: sulfa. Last azithromycin dose today — done. CHF + T2DM, on furosemide and metformin. **Ambient: I observed her at 0930 — pale, withdrawn, picking at breakfast. Not herself. Watch closely overnight; consider repeat NEWS2 at 2100.**\n\nBed 3 — Mr. Walter Goldberg, 91, UTI on dementia. NEWS2 2. DNR/DNI/DNH/POLST. NKA. Ceftriaxone 0900 done. Stage 2 sacral pressure ulcer — repositioned q2h, last 1500. Last BM 2 days ago — bowel program if no movement by 2200.\n\nNo pending consults. No outstanding labs.",
+  "structured": [],
+  "from_shift": "shift1",
+  "to_shift": "shift2",
+  "timestamp": "2026-04-25T15:00:00",
+  "encoding_nurse_id": "RN1",
+  "run_id": "run_a_seed42"
+}

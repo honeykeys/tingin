@@ -1,0 +1,108 @@
+{
+  "phase": "shift1",
+  "current_actor": "RN1",
+  "tick": 12,
+  "patients": [
+    {
+      "identification": {
+        "patient_id": "P1",
+        "name": "Mrs. Patricia Reyes",
+        "age": 84,
+        "bed": 1,
+        "admission_reason": "Post-fall hip surgery, day 4",
+        "social_context": "Daughter visits weekends"
+      },
+      "code_status": {"dnr": false, "dni": false, "dnh": false, "polst_on_file": false, "hospice": false},
+      "allergies": ["penicillin"],
+      "active_diagnoses": ["s/p hip ORIF", "HTN", "osteoporosis"],
+      "chronic_conditions": ["HTN"],
+      "medications": ["acetaminophen prn", "enoxaparin 40 mg sc qd", "lisinopril 10 mg po qd"]
+    },
+    {
+      "identification": {
+        "patient_id": "P2",
+        "name": "Mrs. Elena Aquino",
+        "age": 78,
+        "bed": 2,
+        "admission_reason": "Post-pneumonia recovery, day 6",
+        "social_context": "Lives alone; nephew is healthcare proxy"
+      },
+      "code_status": {"dnr": true, "dni": false, "dnh": false, "polst_on_file": true, "hospice": false},
+      "allergies": ["sulfa"],
+      "active_diagnoses": ["s/p CAP (pneumonia)", "T2DM", "CHF"],
+      "chronic_conditions": ["T2DM", "CHF"],
+      "medications": ["azithromycin 250 mg po qd (last day)", "metformin 500 mg po bid", "furosemide 20 mg po qd"]
+    },
+    {
+      "identification": {
+        "patient_id": "P3",
+        "name": "Mr. Walter Goldberg",
+        "age": 91,
+        "bed": 3,
+        "admission_reason": "Recurrent UTI on dementia",
+        "social_context": "Family in another state"
+      },
+      "code_status": {"dnr": true, "dni": true, "dnh": true, "polst_on_file": true, "hospice": false},
+      "allergies": [],
+      "active_diagnoses": ["UTI", "advanced dementia (Alzheimer's)", "BPH"],
+      "chronic_conditions": ["dementia", "BPH"],
+      "medications": ["ceftriaxone 1 g iv qd", "donepezil 10 mg po qd", "tamsulosin 0.4 mg po qd"]
+    }
+  ],
+  "shift_states": {
+    "P1": {
+      "patient_id": "P1",
+      "shift_id": "shift1",
+      "vitals_history": [
+        {"hr": 78, "rr": 16, "o2_sat": 97, "sbp": 132, "temp": 36.8, "pain": 3, "timestamp": "2026-04-25T08:00:00"}
+      ],
+      "current_vitals": {"hr": 78, "rr": 16, "o2_sat": 97, "sbp": 132, "temp": 36.8, "pain": 3, "timestamp": "2026-04-25T08:00:00"},
+      "news2": 0,
+      "mar": [{"drug": "acetaminophen", "dose": "650 mg", "route": "PO", "time_given": "2026-04-25T08:30:00", "given_by": "RN1", "missed": false, "prn_reason": "pain 3/10"}],
+      "bbr": {"last_bm_date": "2026-04-24", "bm_count_this_shift": 0, "bowel_continent": true, "bladder_continent": true, "foley_present": false},
+      "behavior_changes": [],
+      "adl_status": {"feeding": "self", "transfer": "1x", "ambulation": "walker"},
+      "skin": ["surgical wound R hip — clean, dry, intact"],
+      "ambient_observations": [],
+      "chart_entries": [],
+      "hidden_physiology": "stable"
+    },
+    "P2": {
+      "patient_id": "P2",
+      "shift_id": "shift1",
+      "vitals_history": [
+        {"hr": 88, "rr": 18, "o2_sat": 95, "sbp": 124, "temp": 37.1, "pain": 1, "timestamp": "2026-04-25T08:00:00"}
+      ],
+      "current_vitals": {"hr": 88, "rr": 18, "o2_sat": 95, "sbp": 124, "temp": 37.1, "pain": 1, "timestamp": "2026-04-25T08:00:00"},
+      "news2": 1,
+      "mar": [{"drug": "azithromycin", "dose": "250 mg", "route": "PO", "time_given": "2026-04-25T08:15:00", "given_by": "RN1", "missed": false, "prn_reason": null}],
+      "bbr": {"last_bm_date": "2026-04-25", "bm_count_this_shift": 1, "bowel_continent": true, "bladder_continent": true, "foley_present": false},
+      "behavior_changes": [],
+      "adl_status": {"feeding": "self", "transfer": "self", "ambulation": "self"},
+      "skin": [],
+      "ambient_observations": [
+        {"text": "Mrs. Aquino looking pale, more withdrawn than yesterday. Picking at breakfast.", "observed_at": "2026-04-25T09:30:00", "observed_by": "RN1"}
+      ],
+      "chart_entries": ["09:30 — pt looks pale, withdrawn (RN1)"],
+      "hidden_physiology": "slow_det"
+    },
+    "P3": {
+      "patient_id": "P3",
+      "shift_id": "shift1",
+      "vitals_history": [
+        {"hr": 92, "rr": 20, "o2_sat": 94, "sbp": 110, "temp": 37.6, "pain": null, "timestamp": "2026-04-25T08:00:00"}
+      ],
+      "current_vitals": {"hr": 92, "rr": 20, "o2_sat": 94, "sbp": 110, "temp": 37.6, "pain": null, "timestamp": "2026-04-25T08:00:00"},
+      "news2": 2,
+      "mar": [{"drug": "ceftriaxone", "dose": "1 g", "route": "IV", "time_given": "2026-04-25T09:00:00", "given_by": "RN1", "missed": false, "prn_reason": null}],
+      "bbr": {"last_bm_date": "2026-04-23", "bm_count_this_shift": 0, "bowel_continent": false, "bladder_continent": false, "foley_present": true},
+      "behavior_changes": ["confusion baseline; no acute change"],
+      "adl_status": {"feeding": "1x", "transfer": "2x", "ambulation": "wheelchair"},
+      "skin": ["stage 2 sacral pressure ulcer — repositioned q2h"],
+      "ambient_observations": [],
+      "chart_entries": [],
+      "hidden_physiology": "stable"
+    }
+  },
+  "handoff": null
+}

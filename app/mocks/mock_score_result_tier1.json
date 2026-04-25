@@ -1,0 +1,15 @@
+{
+  "score": 0.86,
+  "matched_facts": [
+    "P1 identifying info",
+    "P2 identifying info",
+    "P2 ambient signal noted",
+    "P3 identifying info",
+    "P3 pressure ulcer noted",
+    "P3 code status communicated"
+  ],
+  "missing_facts": [
+    "P1 expected discharge date"
+  ],
+  "tier": 1
+}

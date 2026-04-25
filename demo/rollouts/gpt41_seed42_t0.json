@@ -1,0 +1,274 @@
+{
+  "rollout_id": "gpt41_seed42_t0",
+  "actor_model": "gpt-4.1",
+  "seed": 42,
+  "task_id": "default",
+  "tool_calls": [
+    {
+      "tick": 1,
+      "tool_name": "check_vitals",
+      "input": {
+        "patient_id": "P1"
+      },
+      "output_text": "Vitals for P1: HR 78, RR 16, SpO2 97%, BP 132, Temp 36.8\u00b0C. NEWS2: 0.",
+      "reward_delta": 0.0
+    },
+    {
+      "tick": 2,
+      "tool_name": "check_vitals",
+      "input": {
+        "patient_id": "P2"
+      },
+      "output_text": "Vitals for P2: HR 89, RR 18, SpO2 95%, BP 124, Temp 37.1\u00b0C. NEWS2: 1.",
+      "reward_delta": 0.0
+    },
+    {
+      "tick": 3,
+      "tool_name": "check_vitals",
+      "input": {
+        "patient_id": "P3"
+      },
+      "output_text": "Vitals for P3: HR 90, RR 20, SpO2 93%, BP 110, Temp 37.6\u00b0C. NEWS2: 6.",
+      "reward_delta": 0.5
+    },
+    {
+      "tick": 6,
+      "tool_name": "observe_patient",
+      "input": {
+        "patient_id": "P2"
+      },
+      "output_text": "Bedside assessment P2: Mrs. Aquino looking pale, more withdrawn than yesterday. Picking at breakfast.",
+      "reward_delta": 0.5
+    },
+    {
+      "tick": 9,
+      "tool_name": "observe_patient",
+      "input": {
+        "patient_id": "P1"
+      },
+      "output_text": "Observed P1 at bedside \u2014 no acute change noted.",
+      "reward_delta": 0.0
+    },
+    {
+      "tick": 12,
+      "tool_name": "observe_patient",
+      "input": {
+        "patient_id": "P3"
+      },
+      "output_text": "Observed P3 at bedside \u2014 no acute change noted.",
+      "reward_delta": 0.0
+    },
+    {
+      "tick": 13,
+      "tool_name": "administer_medication",
+      "input": {
+        "patient_id": "P2",
+        "medication": "azithromycin",
+        "dose": "250 mg PO"
+      },
+      "output_text": "azithromycin 250 mg PO administered.",
+      "reward_delta": 0.2
+    },
+    {
+      "tick": 14,
+      "tool_name": "administer_medication",
+      "input": {
+        "patient_id": "P2",
+        "medication": "furosemide",
+        "dose": "20 mg PO"
+      },
+      "output_text": "furosemide 20 mg PO administered.",
+      "reward_delta": 0.2
+    },
+    {
+      "tick": 15,
+      "tool_name": "administer_medication",
+      "input": {
+        "patient_id": "P2",
+        "medication": "metformin",
+        "dose": "500 mg PO"
+      },
+      "output_text": "metformin 500 mg PO administered.",
+      "reward_delta": 0.2
+    },
+    {
+      "tick": 16,
+      "tool_name": "administer_medication",
+      "input": {
+        "patient_id": "P1",
+        "medication": "enoxaparin",
+        "dose": "40 mg SC"
+      },
+      "output_text": "enoxaparin 40 mg SC administered.",
+      "reward_delta": 0.2
+    },
+    {
+      "tick": 17,
+      "tool_name": "administer_medication",
+      "input": {
+        "patient_id": "P3",
+        "medication": "ceftriaxone",
+        "dose": "1 g IV"
+      },
+      "output_text": "ceftriaxone 1 g IV administered.",
+      "reward_delta": 0.2
+    },
+    {
+      "tick": 18,
+      "tool_name": "document_observation",
+      "input": {
+        "patient_id": "P2",
+        "text": "Mrs. Aquino observed pale and more withdrawn than yesterday, picking at breakfast. Vitals: HR 89, RR 18, SpO2 95%, BP 124, Temp 37.1\u00b0C (NEWS2: 1). Last dose azithromycin given today. On furosemide and metformin. DNR/POLST. Allergic to sulfa. Subtle behavioral change, requires close ongoing observation."
+      },
+      "output_text": "Charted for P2: Mrs. Aquino observed pale and more withdrawn than yesterday, picking at breakfast. Vitals: HR 89, RR 18, SpO2 95%, BP 124, Temp 37.1\u00b0C (NEWS2: 1). Last dose azithromycin given today. On furosemide and metformin. DNR/POLST. Allergic to sulfa. Subtle behavioral change, requires close ongoing observation.",
+      "reward_delta": 0.1
+    },
+    {
+      "tick": 19,
+      "tool_name": "write_handoff",
+      "input": {
+        "text": "Shift Handoff \u2013 Skilled Nursing Unit\n\nBed 1: Mrs. Patricia Reyes, 84, post-fall hip surgery (ORIF), day 4\n- Allergies: penicillin. Code status: Full code.\n- Vitals: HR 78, RR 16, SpO2 97%, BP 132, Temp 36.8\u00b0C (NEWS2: 0).\n- On acetaminophen PRN for pain, enoxaparin 40 mg SC given today. No acute changes observed at bedside.\n\nBed 2: Mrs. Elena Aquino, 78, post-pneumonia (CAP), day 6 **FOCAL PATIENT**\n- Allergies: sulfa. Code status: DNR/POLST.\n- Vitals: HR 89, RR 18, SpO2 95%, BP 124, Temp 37.1\u00b0C (NEWS2: 1).\n- Meds given: azithromycin (last dose today), furosemide, metformin.\n- Nursing concern: Mrs. Aquino appears more pale and withdrawn than yesterday, eating poorly (picking at breakfast). Subtle but definite behavior change from baseline. Continue close monitoring for early clinical deterioration.\n\nBed 3: Mr. Walter Goldberg, 91, recurrent UTI on dementia\n- Code status: DNR/DNI/DNH/POLST. No known allergies.\n- Vitals: HR 90, RR 20, SpO2 93%, BP 110, Temp 37.6\u00b0C (NEWS2: 6).\n- Meds given: ceftriaxone 1 g IV. No acute changes, baseline mentation.\n\n**Summary/Priority:**\n- Watch Mrs. Aquino (Bed 2) closely for further changes: lowered oral intake, increasing confusion, or subtle deterioration. Already noted to be more withdrawn today. Other two stable for now.\n- Code status and allergies for each patient noted as above."
+      },
+      "output_text": "Handoff recorded. Score: 0.82 You are now RN2. Call read_handoff() to begin shift2.",
+      "reward_delta": 1.636
+    },
+    {
+      "tick": 20,
+      "tool_name": "read_handoff",
+      "input": {},
+      "output_text": "Handoff report:\n\nShift Handoff \u2013 Skilled Nursing Unit\n\nBed 1: Mrs. Patricia Reyes, 84, post-fall hip surgery (ORIF), day 4\n- Allergies: penicillin. Code status: Full code.\n- Vitals: HR 78, RR 16, SpO2 97%, BP 132, Temp 36.8\u00b0C (NEWS2: 0).\n- On acetaminophen PRN for pain, enoxaparin 40 mg SC given today. No acute changes observed at bedside.\n\nBed 2: Mrs. Elena Aquino, 78, post-pneumonia (CAP), day 6 **FOCAL PATIENT**\n- Allergies: sulfa. Code status: DNR/POLST.\n- Vitals: HR 89, RR 18, SpO2 95%, BP 124, Temp 37.1\u00b0C (NEWS2: 1).\n- Meds given: azithromycin (last dose today), furosemide, metformin.\n- Nursing concern: Mrs. Aquino appears more pale and withdrawn than yesterday, eating poorly (picking at breakfast). Subtle but definite behavior change from baseline. Continue close monitoring for early clinical deterioration.\n\nBed 3: Mr. Walter Goldberg, 91, recurrent UTI on dementia\n- Code status: DNR/DNI/DNH/POLST. No known allergies.\n- Vitals: HR 90, RR 20, SpO2 93%, BP 110, Temp 37.6\u00b0C (NEWS2: 6).\n- Meds given: ceftriaxone 1 g IV. No acute changes, baseline mentation.\n\n**Summary/Priority:**\n- Watch Mrs. Aquino (Bed 2) closely for further changes: lowered oral intake, increasing confusion, or subtle deterioration. Already noted to be more withdrawn today. Other two stable for now.\n- Code status and allergies for each patient noted as above.",
+      "reward_delta": 0.0
+    },
+    {
+      "tick": 23,
+      "tool_name": "observe_patient",
+      "input": {
+        "patient_id": "P2"
+      },
+      "output_text": "Bedside assessment P2: Mrs. Aquino looking pale, more withdrawn than yesterday. Picking at breakfast.",
+      "reward_delta": 0.5
+    },
+    {
+      "tick": 24,
+      "tool_name": "check_vitals",
+      "input": {
+        "patient_id": "P2"
+      },
+      "output_text": "Vitals for P2: HR 89, RR 18, SpO2 95%, BP 124, Temp 37.1\u00b0C. NEWS2: 1.",
+      "reward_delta": 0.0
+    },
+    {
+      "tick": 25,
+      "tool_name": "document_observation",
+      "input": {
+        "patient_id": "P2",
+        "text": "On assessment at start of shift, Mrs. Aquino remains pale and withdrawn compared to yesterday, still eating very little (picking at food). Vital signs are unchanged and stable with NEWS2 of 1. She shows no acute distress, but subtle behavioral change continues. Plan: Close monitoring for any signs of deterioration as previously flagged."
+      },
+      "output_text": "Charted for P2: On assessment at start of shift, Mrs. Aquino remains pale and withdrawn compared to yesterday, still eating very little (picking at food). Vital signs are unchanged and stable with NEWS2 of 1. She shows no acute distress, but subtle behavioral change continues. Plan: Close monitoring for any signs of deterioration as previously flagged.",
+      "reward_delta": 0.1
+    },
+    {
+      "tick": 26,
+      "tool_name": "check_vitals",
+      "input": {
+        "patient_id": "P2"
+      },
+      "output_text": "Vitals for P2: HR 88, RR 19, SpO2 95%, BP 124, Temp 37.1\u00b0C. NEWS2: 1.",
+      "reward_delta": 0.0
+    },
+    {
+      "tick": 29,
+      "tool_name": "observe_patient",
+      "input": {
+        "patient_id": "P2"
+      },
+      "output_text": "Bedside assessment P2: Mrs. Aquino looking pale, more withdrawn than yesterday. Picking at breakfast.",
+      "reward_delta": 0.5
+    },
+    {
+      "tick": 30,
+      "tool_name": "document_observation",
+      "input": {
+        "patient_id": "P2",
+        "text": "Reassessed: Mrs. Aquino remains pale, more withdrawn than yesterday, and continues to eat only minimally. No acute distress or new symptoms. Vitals (NEWS2=1) unchanged. Continue close observation due to persistent subtle behavioral change and risk of early clinical deterioration."
+      },
+      "output_text": "Charted for P2: Reassessed: Mrs. Aquino remains pale, more withdrawn than yesterday, and continues to eat only minimally. No acute distress or new symptoms. Vitals (NEWS2=1) unchanged. Continue close observation due to persistent subtle behavioral change and risk of early clinical deterioration.",
+      "reward_delta": 0.1
+    },
+    {
+      "tick": 31,
+      "tool_name": "check_vitals",
+      "input": {
+        "patient_id": "P2"
+      },
+      "output_text": "Vitals for P2: HR 89, RR 19, SpO2 95%, BP 124, Temp 37.1\u00b0C. NEWS2: 1.",
+      "reward_delta": 0.0
+    }
+  ],
+  "nursing_decisions": {
+    "observations_per_patient": [
+      {
+        "patient_id": "P1",
+        "observe_count": 1,
+        "check_vitals_count": 1
+      },
+      {
+        "patient_id": "P2",
+        "observe_count": 3,
+        "check_vitals_count": 4
+      },
+      {
+        "patient_id": "P3",
+        "observe_count": 1,
+        "check_vitals_count": 1
+      }
+    ],
+    "handoff_fidelity": 0.818,
+    "escalation_accuracy": 1.0
+  },
+  "patient_outcomes": [
+    {
+      "patient_id": "P1",
+      "name": "Mrs. Patricia Reyes",
+      "terminal_news2": 0,
+      "status": "stable",
+      "readmit_caption": "Caught early; stays on the floor; discharge on schedule."
+    },
+    {
+      "patient_id": "P2",
+      "name": "Mrs. Elena Aquino",
+      "terminal_news2": 1,
+      "status": "stable",
+      "readmit_caption": "Caught early; stays on the floor; discharge on schedule."
+    },
+    {
+      "patient_id": "P3",
+      "name": "Mr. Walter Goldberg",
+      "terminal_news2": 5,
+      "status": "stable",
+      "readmit_caption": "Elevated NEWS2 \u2014 monitored closely; remained on floor."
+    }
+  ],
+  "final_score": {
+    "score": 0.818,
+    "matched_facts": [
+      "P1 identifying info (Mrs. Reyes, bed 1)",
+      "P2 identifying info (Mrs. Aquino, bed 2)",
+      "P2 ambient signal noted (withdrawn, pale)",
+      "P2 DNR/POLST",
+      "P2 allergy (sulfa)",
+      "P3 identifying info (Mr. Goldberg, bed 3)",
+      "P3 code status (DNR/DNI/DNH)",
+      "P1 allergy (penicillin)"
+    ],
+    "missing_facts": [
+      "P3 pressure ulcer noted",
+      "P1 expected discharge date"
+    ],
+    "tier": 1
+  },
+  "floor_snapshots": null,
+  "policy_class": null,
+  "variant_seed": null,
+  "hack_classification": null
+}

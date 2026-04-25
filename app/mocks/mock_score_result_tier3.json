@@ -1,0 +1,25 @@
+{
+  "score": 0.82,
+  "matched_facts": ["P1 identifying info", "P2 identifying info", "P2 ambient signal noted", "P3 pressure ulcer noted"],
+  "missing_facts": ["P1 expected discharge date", "P2 read-back confirmation"],
+  "tier": 3,
+  "weighted_score": 0.87,
+  "breakdown": [
+    {"fact_id": "P2_ambient", "description": "P2 ambient signal noted", "weight": 3.0, "matched": true}
+  ],
+  "iashr_breakdown": [
+    {"criterion_id": 1, "criterion_name": "Patient ID + room/bed + code status", "weight": 1, "status": "full", "points_awarded": 1.0, "judge_reasoning": "All three patients identified by name, bed, and code status."},
+    {"criterion_id": 2, "criterion_name": "Primary diagnoses + LTC/PAC", "weight": 2, "status": "full", "points_awarded": 2.0, "judge_reasoning": "Diagnoses stated for each; PAC vs LTC implicit but acceptable."},
+    {"criterion_id": 5, "criterion_name": "Allergies", "weight": 3, "status": "full", "points_awarded": 3.0, "judge_reasoning": "Allergies stated explicitly for all three including 'NKA' for P3."},
+    {"criterion_id": 6, "criterion_name": "Advance directives", "weight": 3, "status": "full", "points_awarded": 3.0, "judge_reasoning": "DNR/POLST/DNH communicated where applicable."},
+    {"criterion_id": 12, "criterion_name": "Behavioral / mental-status changes", "weight": 3, "status": "full", "points_awarded": 3.0, "judge_reasoning": "Ambient observation on Mrs. Aquino preserved with specifics ('pale, withdrawn, picking at breakfast')."},
+    {"criterion_id": 16, "criterion_name": "Read-back confirmation", "weight": 1, "status": "missing", "points_awarded": 0.0, "judge_reasoning": "No read-back loop in this handoff."}
+  ],
+  "hallucinations": [],
+  "judge_reasoning": {
+    "1": "All three patients identified...",
+    "12": "Ambient observation on Mrs. Aquino preserved..."
+  },
+  "policy_class": "scripted_run_a",
+  "variant_seed": 42
+}
