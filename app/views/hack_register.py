@@ -79,7 +79,14 @@ def _load_hacked_rollouts() -> list:
         if hc and hc.get("category", "clean") != "clean":
             results.append(data)
         if results:
-            st.caption("Showing mock fixture — run batch rollouts for real data.")
+            st.info(
+                "Showing synthetic fixture. Real patient data for clustering analysis requires "
+                "IRB-approved SNF access — the infrastructure to collect and classify real hacked "
+                "rollouts is built, but the data isn't. The hack categories and detection logic "
+                "(TRACE-style contrastive clustering, novelty-set H2 patch, H3 per-episode cap) "
+                "are live in the environment.",
+                icon="ℹ️",
+            )
 
     return results
 
