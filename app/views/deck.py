@@ -92,7 +92,22 @@ def _slide_title():
         unsafe_allow_html=True,
     )
 
-    st.markdown("<div style='height:48px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:24px'></div>", unsafe_allow_html=True)
+
+    # Product statement — what it does in plain terms
+    st.markdown(
+        f'<div style="text-align:center;max-width:640px;margin:0 auto;'
+        f'font-family:Newsreader,serif;font-size:17px;'
+        f'color:{COLORS["text_muted"]};line-height:1.7">'
+        f'The nurse can\'t hold everything across a 12-hour shift. '
+        f'The RL agent learns — across thousands of handoffs — what gets forgotten, '
+        f'what that costs, and what to surface next time. '
+        f'Compounding memory that helps the nurse catch what she might have missed.'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+    st.markdown("<div style='height:40px'></div>", unsafe_allow_html=True)
 
     # Spoken note
     st.markdown(

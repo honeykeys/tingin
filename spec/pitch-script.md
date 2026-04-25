@@ -7,9 +7,11 @@ OR URL: `openreward.ai/rkarlonuyda/tingin`
 ---
 
 ## Slide 1 — Title `(0:00–0:20)`
-*Screen: ◆ Tingin, diamond mark, tagline.*
+*Screen: ◆ Tingin, diamond mark, tagline, product statement.*
 
 > "Tingin. It's Filipino for *the way you see*. We built memory infrastructure for nursing handoffs."
+
+> "The nurse can't hold everything across a 12-hour shift. The RL agent learns — across thousands of handoffs — what gets forgotten, what that costs, and what to surface next time. Compounding memory that helps the nurse catch what she might have missed."
 
 → advance to Slide 2.
 
