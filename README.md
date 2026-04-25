@@ -64,6 +64,8 @@ At Tier 3: LLM-judge (Gemini 2.5 Flash) with per-criterion scoring and hallucina
 
 ---
 
-## Live Environment
+## Live Demo
 
-Available at `openreward.ai/rkarlonuyda/tingin`
+**Streamlit app:** https://tingin-3y89vgew36f9ttyiouu8ft.streamlit.app/
+
+**OR environment:** `openreward.ai/rkarlonuyda/tingin`
