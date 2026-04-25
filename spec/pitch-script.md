@@ -80,12 +80,18 @@ OR URL live: `openreward.ai/rkarlonuyda/tingin`
 
 ---
 
-## Slide 6 — Close `(3:45–4:00)`
+## Slide 6 — Close `(3:45–4:15)`
 *Navigate to Slide 6.*
 
 > "Long-term SNF residents don't leave in weeks. Mr. Goldberg is in skilled nursing care until end of life. Hundreds of handoffs. Thousands of decisions. Every one a compression event."
 
-> "Two shifts is the minimum demonstration. The benchmark extends naturally — and the 1-in-4 readmission rate is where the cost of those thousands of decisions lives."
+**How it learns — the flywheel:**
+
+> "Every scored handoff is a training signal. The IASHR rubric doesn't say 'bad handoff' — it says *criterion 12, behavioral changes, weight 3, not preserved*. Per-criterion feedback a policy can learn from. As rollouts accumulate, the benchmark reveals which information is structurally at risk across the whole census. The Adler-Milstein 49.6% problem, now expressed as a reward gradient instead of a statistic."
+
+**On infrastructure (if asked — honest answer):**
+
+> "We hit OpenAI's rate limit generating rollouts today — 50 tool calls per episode at 30K tokens per minute. The production path is the OpenAI Batch API for offline rollout generation, async parallel OR sessions, and Gemini Batch API for judge scoring at scale. The OR session model is built for exactly this."
 
 *Point to OR URL.*
 

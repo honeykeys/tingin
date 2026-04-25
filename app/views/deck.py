@@ -370,9 +370,42 @@ def _slide_close():
             unsafe_allow_html=True,
         )
 
+        # How it learns
+        st.markdown(
+            f'<div style="font-family:Fraunces,serif;font-size:18px;'
+            f'color:{COLORS["text_primary"]};margin-bottom:10px">How it compounds.</div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<div style="font-family:Newsreader,serif;font-size:16px;'
+            f'color:{COLORS["text_secondary"]};line-height:1.65;margin-bottom:16px">'
+            f'Every scored handoff is a training signal. The IASHR rubric doesn\'t say '
+            f'"bad handoff" — it says <em>criterion 12 (behavioral changes, weight 3) not preserved</em>. '
+            f'Per-criterion feedback a policy can learn from. As rollouts accumulate across '
+            f'patient archetypes and policy variants, the benchmark reveals which information '
+            f'is structurally at risk — the Adler-Milstein 49.6% problem, now expressed as '
+            f'a reward gradient instead of a statistic.'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+        # Infrastructure note
+        st.markdown(
+            f'<div style="background:{COLORS["bg_elevated"]};border-left:3px solid {COLORS["accent_amber"]};'
+            f'padding:10px 14px;font-family:JetBrains Mono,monospace;font-size:11px;'
+            f'color:{COLORS["text_muted"]};line-height:1.7;margin-bottom:20px">'
+            f'<strong style="color:{COLORS["text_secondary"]}">Infrastructure path</strong><br>'
+            f'We hit OpenAI\'s 30K TPM limit generating rollouts today — 50 tool calls per episode '
+            f'× parallel runs. Production: OpenAI Batch API for offline rollout generation · '
+            f'async parallel OR sessions · Gemini Batch API for judge calls at scale · '
+            f'OR managed rollout logging for trajectory storage.'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
         # Amber rule
         st.markdown(
-            f'<div style="border-top:1px solid {COLORS["accent_amber"]};margin:24px 0"></div>',
+            f'<div style="border-top:1px solid {COLORS["accent_amber"]};margin:20px 0"></div>',
             unsafe_allow_html=True,
         )
 
