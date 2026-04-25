@@ -245,7 +245,26 @@ def _slide_how():
                 unsafe_allow_html=True,
             )
 
-    st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
+
+    # Technical implementation strip
+    st.markdown(
+        f'<div style="background:{COLORS["bg_elevated"]};border:1px solid {COLORS["border_subtle"]};'
+        f'border-radius:4px;padding:14px 20px;font-family:JetBrains Mono,monospace;font-size:12px;'
+        f'color:{COLORS["text_secondary"]};line-height:1.9">'
+        f'<span style="color:{COLORS["text_muted"]}">State</span> &nbsp;'
+        f'vitals + hidden physiology (stable / slow_det / acute) + ambient signal × 3 patients + phase<br>'
+        f'<span style="color:{COLORS["text_muted"]}">Actions</span> &nbsp;'
+        f'check_vitals · observe_patient · administer_medication · document_observation · write_handoff · read_handoff<br>'
+        f'<span style="color:{COLORS["text_muted"]}">Reward</span> &nbsp;'
+        f'NEWS2 shaping (+0.5) · med correctness (+0.2) · doc novelty (+0.1) · handoff quality q×2.0 · outcomes ±(1.0–2.0)<br>'
+        f'<span style="color:{COLORS["text_muted"]}">Env</span> &nbsp;'
+        f'NursingHandoffEnv on OpenReward SDK 0.1.105 · 4 OR tools · GPT-4.1 actor · Gemini 2.5 Flash judge'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+    st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
     st.markdown(
         f'<div style="font-family:Newsreader,serif;font-size:16px;'
         f'color:{COLORS["text_muted"]};text-align:center;margin-bottom:16px">'
