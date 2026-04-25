@@ -198,6 +198,7 @@ def _slide_how():
         unsafe_allow_html=True,
     )
 
+    # Row 1 — MDP structure
     col_a, col_b, col_c = st.columns(3)
     for col, header, body in [
         (col_a, "The shift is the episode.", "~41 decisions. 3 patients. One nurse, 20 ticks."),
@@ -207,16 +208,44 @@ def _slide_how():
         with col:
             st.markdown(
                 f'<div style="background:{COLORS["bg_elevated"]};border:1px solid {COLORS["border_subtle"]};'
-                f'border-radius:4px;padding:24px;height:160px">'
-                f'<div style="font-family:Fraunces,serif;font-size:18px;'
-                f'color:{COLORS["accent_rose"]};margin-bottom:12px">{header}</div>'
-                f'<div style="font-family:Newsreader,serif;font-size:15px;'
+                f'border-radius:4px;padding:20px;height:150px">'
+                f'<div style="font-family:Fraunces,serif;font-size:17px;'
+                f'color:{COLORS["accent_rose"]};margin-bottom:10px">{header}</div>'
+                f'<div style="font-family:Newsreader,serif;font-size:14px;'
                 f'color:{COLORS["text_secondary"]}">{body}</div>'
                 f'</div>',
                 unsafe_allow_html=True,
             )
 
-    st.markdown("<div style='height:32px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+
+    # Row 2 — Hackathon criteria
+    col_d, col_e, col_f = st.columns(3)
+    criteria = [
+        (col_d, "Long horizon.",
+         "accent_amethyst",
+         "The two-shift demo is the unit. Long-term SNF residents — like Mr. Goldberg — are in care for years, until end of life. Hundreds of handoffs. Thousands of decisions. The horizon compounds across the full residency."),
+        (col_e, "Capability tangent.",
+         "accent_amethyst",
+         "What only emerges at scale: cross-shift memory — learning what to encode for an agent with zero prior context. Adaptation to non-stationarity — a patient changes day by day. Institutional knowledge that accumulates across shifts."),
+        (col_f, "Hard but tractable.",
+         "accent_amethyst",
+         "Hard: the information bottleneck is irreversible once the handoff is written. You cannot undo a missed observation. Tractable: shaped reward guides toward correct nursing at every tick. Natural curriculum via census complexity."),
+    ]
+    for col, header, color_key, body in criteria:
+        with col:
+            st.markdown(
+                f'<div style="background:{COLORS["bg_deep"]};border:1px solid {COLORS[color_key]}44;'
+                f'border-radius:4px;padding:20px;height:160px">'
+                f'<div style="font-family:Fraunces,serif;font-size:16px;'
+                f'color:{COLORS[color_key]};margin-bottom:8px">{header}</div>'
+                f'<div style="font-family:Newsreader,serif;font-size:13px;'
+                f'color:{COLORS["text_muted"]};line-height:1.5">{body}</div>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
+
+    st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
     st.markdown(
         f'<div style="font-family:Newsreader,serif;font-size:16px;'
         f'color:{COLORS["text_muted"]};text-align:center;margin-bottom:16px">'
@@ -311,11 +340,13 @@ def _slide_close():
             f'<div style="font-family:Newsreader,serif;font-size:20px;'
             f'color:{COLORS["text_secondary"]};line-height:1.7;margin-bottom:24px">'
             f'<strong style="color:{COLORS["text_primary"]}">The shift is one link.</strong><br>'
-            f'A SNF patient passes through dozens of handoffs across weeks of care.<br>'
-            f'Two shifts is the minimum demonstration.<br><br>'
+            f'Long-term SNF residents don\'t leave in weeks — they stay for <em>years</em>, '
+            f'until end of life or hospice. Mr. Goldberg is one of them. '
+            f'Hundreds of handoffs. Thousands of decisions. Every one a compression event.<br><br>'
             f'The structure scales. The cost compounds. '
             f'<strong style="color:{COLORS["accent_rose"]}">1 in 4</strong> Medicare SNF patients '
-            f'are readmitted within 30 days. Two-thirds preventable.'
+            f'are readmitted within 30 days. Two-thirds preventable. '
+            f'Two shifts is the minimum demonstration of a problem that runs for years.'
             f'</div>',
             unsafe_allow_html=True,
         )

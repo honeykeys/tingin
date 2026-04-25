@@ -26,8 +26,22 @@ OR URL live: `openreward.ai/rkarlonuyda/tingin`
 
 ---
 
-## Slide 4 — How / Run A `(1:00–2:30)`
-*Click **▶ Run A: Good Handoff** on Slide 4. App switches to Floor view.*
+## Slide 4 — How `(1:00–1:30)`
+*Screen: 6 cards. Top row = MDP structure. Bottom row = hackathon criteria.*
+
+**Address the three criteria here, before the demo. Point to each bottom card.**
+
+> "The shift is the episode. ~41 decisions. The handoff is the compression event between episodes — one encoding, one channel, everything lost is gone."
+
+> "**Long horizon.** The two-shift demo is the unit. Long-term SNF residents — Mr. Goldberg is one of them — are in care for years, until end of life. Hundreds of handoffs. Thousands of decisions. The horizon compounds across the full residency."
+
+> "**Capability tangent.** What only emerges at scale: cross-shift memory, adaptation to non-stationarity as a patient's condition changes day by day, institutional knowledge that no single shift can accumulate."
+
+> "**Hard but tractable.** Hard because the information bottleneck is irreversible — you cannot undo a missed observation. Tractable because the reward is shaped, not sparse."
+
+*Click **▶ Run A: Good Handoff**. App switches to Floor view.*
+
+## Slide 4 — Run A `(1:30–2:30)`
 
 > "You're the day-shift RN arriving at 7am. Three patients. Your shift is 20 ticks."
 
@@ -66,18 +80,16 @@ OR URL live: `openreward.ai/rkarlonuyda/tingin`
 
 ---
 
-## Slide 6 — Why this is RL `(3:15–3:45)`
-*Navigate to Slide 6 in the deck.*
+## Slide 6 — Close `(3:45–4:00)`
+*Navigate to Slide 6.*
 
-> "Why is this reinforcement learning? Credit assignment depth across an agent boundary the agent doesn't control."
+> "Long-term SNF residents don't leave in weeks. Mr. Goldberg is in skilled nursing care until end of life. Hundreds of handoffs. Thousands of decisions. Every one a compression event."
 
-> "The nurse in shift 2 makes decisions based on what survived the compression event. Greedy-local can't solve this — the information is gone before shift 2 arrives."
+> "Two shifts is the minimum demonstration. The benchmark extends naturally — and the 1-in-4 readmission rate is where the cost of those thousands of decisions lives."
 
-> "The benchmark extends naturally. An SNF patient has dozens of handoffs across weeks of care. Two shifts is the minimum demonstration."
+*Point to OR URL.*
 
-*Point to OR URL on screen.*
-
-> "The environment is live at `openreward.ai/rkarlonuyda/tingin`. Judges can call it."
+> "It's live. `openreward.ai/rkarlonuyda/tingin`. Judges can call it."
 
 ---
 
