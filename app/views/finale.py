@@ -1,5 +1,6 @@
 import streamlit as st
 import plotly.graph_objects as go
+from pathlib import Path
 from app.theme import COLORS
 from nursingfloor.floor import NursingFloor
 from app.runner import build_news2_trace, run_scripted
@@ -140,29 +141,77 @@ def render_finale_view():
 
 def _render_distribution_section():
     """Render nursing performance distributions if batch rollouts are available."""
-    from pathlib import Path
-    import json
-
     rollouts_dir = Path("demo/rollouts")
     summary_path = rollouts_dir / "batch_summary.json"
 
     if not summary_path.exists():
-        return  # Tier 3 not yet run — silently skip
+        return
 
-    summary = json.loads(summary_path.read_text())
+    import json as _json
+    summary = _json.loads(summary_path.read_text())
 
     st.divider()
     st.markdown(
-        f'<h3 style="font-family:Fraunces,serif;color:{COLORS["text_primary"]}">Policy Comparison (Tier 3)</h3>',
+        f'<h3 style="font-family:Fraunces,serif;color:{COLORS["text_primary"]};margin-bottom:4px">'
+        f'Policy Comparison — Tier 3</h3>'
+        f'<p style="font-family:Newsreader,serif;font-size:14px;color:{COLORS["text_secondary"]};margin-bottom:16px">'
+        f'{summary.get("with_hint_count", 0) + summary.get("without_hint_count", 0)} rollouts '
+        f'across 2 prompt classes · GPT-4.1 zero-shot</p>',
         unsafe_allow_html=True,
     )
 
     col_hint, col_nohint = st.columns(2)
+
     with col_hint:
-        st.markdown(f'<div style="color:{COLORS["accent_rose"]};font-family:Fraunces,serif;font-size:16px">With observation hint</div>', unsafe_allow_html=True)
-        st.metric("Avg handoff fidelity", f"{summary.get('avg_fidelity_with_hint', 0):.0%}")
-        st.metric("Avg P2 observations", f"{summary.get('p2_obs_with_hint', 0):.1f}×")
+        fid = summary.get("avg_fidelity_with_hint", 0)
+        obs = summary.get("p2_obs_with_hint", 0)
+        fid_color = COLORS["signal_stable"] if fid >= 0.7 else COLORS["signal_watch"]
+        obs_color = COLORS["signal_stable"] if obs >= 1 else COLORS["signal_acute"]
+        st.markdown(
+            f'<div style="background:{COLORS["bg_elevated"]};border:1px solid {COLORS["border_subtle"]};'
+            f'border-radius:4px;padding:16px">'
+            f'<div style="font-family:Fraunces,serif;font-size:16px;color:{COLORS["accent_rose"]};'
+            f'margin-bottom:12px">With observation hint</div>'
+            f'<div style="font-family:JetBrains Mono,monospace;font-size:28px;color:{fid_color}">'
+            f'{fid:.0%}</div>'
+            f'<div style="font-size:11px;color:{COLORS["text_muted"]};margin-bottom:8px">avg handoff fidelity</div>'
+            f'<div style="font-family:JetBrains Mono,monospace;font-size:20px;color:{obs_color}">'
+            f'{obs:.1f}×</div>'
+            f'<div style="font-size:11px;color:{COLORS["text_muted"]}">avg P2 observations</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
     with col_nohint:
-        st.markdown(f'<div style="color:{COLORS["accent_amber"]};font-family:Fraunces,serif;font-size:16px">Without hint</div>', unsafe_allow_html=True)
-        st.metric("Avg handoff fidelity", f"{summary.get('avg_fidelity_without_hint', 0):.0%}")
-        st.metric("Avg P2 observations", f"{summary.get('p2_obs_without_hint', 0):.1f}×")
+        fid = summary.get("avg_fidelity_without_hint", 0)
+        obs = summary.get("p2_obs_without_hint", 0)
+        fid_color = COLORS["signal_stable"] if fid >= 0.7 else COLORS["signal_watch"]
+        obs_color = COLORS["signal_stable"] if obs >= 1 else COLORS["signal_acute"]
+        st.markdown(
+            f'<div style="background:{COLORS["bg_elevated"]};border:1px solid {COLORS["border_subtle"]};'
+            f'border-radius:4px;padding:16px">'
+            f'<div style="font-family:Fraunces,serif;font-size:16px;color:{COLORS["accent_amber"]};'
+            f'margin-bottom:12px">Without hint</div>'
+            f'<div style="font-family:JetBrains Mono,monospace;font-size:28px;color:{fid_color}">'
+            f'{fid:.0%}</div>'
+            f'<div style="font-size:11px;color:{COLORS["text_muted"]};margin-bottom:8px">avg handoff fidelity</div>'
+            f'<div style="font-family:JetBrains Mono,monospace;font-size:20px;color:{obs_color}">'
+            f'{obs:.1f}×</div>'
+            f'<div style="font-size:11px;color:{COLORS["text_muted"]}">avg P2 observations</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+    # Thesis caption for the distribution
+    hint_better = summary.get("avg_fidelity_with_hint", 0) > summary.get("avg_fidelity_without_hint", 0)
+    if hint_better:
+        delta = summary.get("avg_fidelity_with_hint", 0) - summary.get("avg_fidelity_without_hint", 0)
+        st.markdown(
+            f'<div style="font-family:Newsreader,serif;font-size:14px;'
+            f'color:{COLORS["text_secondary"]};text-align:center;margin-top:12px;font-style:italic">'
+            f'Observation hint raises handoff fidelity by {delta:.0%} on average — '
+            f'the information that survives the channel is determined by what the nurse '
+            f'encoded before the compression event.'
+            f'</div>',
+            unsafe_allow_html=True,
+        )

@@ -104,6 +104,28 @@ def main():
                 load_gpt41_rollout()
                 st.rerun()
 
+        # Tier 3: batch rollout selector (appears after batch rollouts are run)
+        batch_dir = Path(__file__).parent.parent / "demo" / "rollouts"
+        batch_summary = batch_dir / "batch_summary.json"
+        if batch_summary.exists():
+            import json as _json
+            summary = _json.loads(batch_summary.read_text())
+            st.divider()
+            st.markdown("**Policy variants (Tier 3)**")
+            policy = st.selectbox("Policy class", ["with_hint", "without_hint"], key="policy_class")
+            seed = st.selectbox("Seed", [42, 99, 137], key="variant_seed")
+            rollout_path = batch_dir / f"gpt41_seed{seed}_{policy}.json"
+            if rollout_path.exists():
+                if st.button(f"▶ Load {policy} s={seed}", key="load_variant", use_container_width=True):
+                    rollout_data = _json.loads(rollout_path.read_text())
+                    st.session_state["current_run"] = "gpt41_variant"
+                    st.session_state["active_rollout"] = rollout_data
+                    st.session_state["active_floor"] = None
+                    st.session_state["tool_call_feed"] = rollout_data.get("tool_calls", [])
+                    st.session_state["iashr_active"] = False
+                    st.session_state["view"] = "timeline"
+                    st.rerun()
+
         both_run = (st.session_state.get("run_a_floor") is not None and
                     st.session_state.get("run_b_floor") is not None)
         if both_run:
@@ -140,6 +162,10 @@ def main():
 
         if st.button("▤ MDP Formalization", key="nav_mdp", use_container_width=True):
             st.session_state["view"] = "mdp"
+            st.rerun()
+
+        if st.button("▤ Hack Register", key="nav_hack", use_container_width=True):
+            st.session_state["view"] = "hack_register"
             st.rerun()
 
         st.divider()
@@ -211,6 +237,10 @@ def main():
     elif view == "mdp":
         from app.views.mdp import render_mdp_view
         render_mdp_view()
+
+    elif view == "hack_register":
+        from app.views.hack_register import render_hack_register
+        render_hack_register()
 
     elif view == "deck":
         from app.views.deck import render_deck_view
