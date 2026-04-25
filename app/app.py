@@ -112,7 +112,14 @@ def main():
                 st.rerun()
 
         st.divider()
-        st.markdown("**Views**")
+        st.markdown("**Presentation**")
+        if st.button("◆ Pitch deck", key="nav_deck", use_container_width=True):
+            st.session_state["view"] = "deck"
+            st.session_state["slide"] = 1
+            st.rerun()
+
+        st.divider()
+        st.markdown("**Demo views**")
         if st.button("▤ Floor", key="nav_floor", use_container_width=True):
             st.session_state["view"] = "floor"
             st.rerun()
@@ -151,8 +158,8 @@ def main():
                 unsafe_allow_html=True,
             )
 
-    # Main content
-    view = st.session_state.get("view", "floor")
+    # Main content — default to deck on first load
+    view = st.session_state.get("view", "deck")
     floor_obj = st.session_state.get("active_floor")
 
     if view == "floor":
@@ -204,6 +211,10 @@ def main():
     elif view == "mdp":
         from app.views.mdp import render_mdp_view
         render_mdp_view()
+
+    elif view == "deck":
+        from app.views.deck import render_deck_view
+        render_deck_view()
 
 
 if __name__ == "__main__":

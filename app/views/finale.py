@@ -133,3 +133,36 @@ def render_finale_view():
         f'</div>',
         unsafe_allow_html=True,
     )
+
+    # Tier 3: distribution view (only renders if batch rollouts exist)
+    _render_distribution_section()
+
+
+def _render_distribution_section():
+    """Render nursing performance distributions if batch rollouts are available."""
+    from pathlib import Path
+    import json
+
+    rollouts_dir = Path("demo/rollouts")
+    summary_path = rollouts_dir / "batch_summary.json"
+
+    if not summary_path.exists():
+        return  # Tier 3 not yet run — silently skip
+
+    summary = json.loads(summary_path.read_text())
+
+    st.divider()
+    st.markdown(
+        f'<h3 style="font-family:Fraunces,serif;color:{COLORS["text_primary"]}">Policy Comparison (Tier 3)</h3>',
+        unsafe_allow_html=True,
+    )
+
+    col_hint, col_nohint = st.columns(2)
+    with col_hint:
+        st.markdown(f'<div style="color:{COLORS["accent_rose"]};font-family:Fraunces,serif;font-size:16px">With observation hint</div>', unsafe_allow_html=True)
+        st.metric("Avg handoff fidelity", f"{summary.get('avg_fidelity_with_hint', 0):.0%}")
+        st.metric("Avg P2 observations", f"{summary.get('p2_obs_with_hint', 0):.1f}×")
+    with col_nohint:
+        st.markdown(f'<div style="color:{COLORS["accent_amber"]};font-family:Fraunces,serif;font-size:16px">Without hint</div>', unsafe_allow_html=True)
+        st.metric("Avg handoff fidelity", f"{summary.get('avg_fidelity_without_hint', 0):.0%}")
+        st.metric("Avg P2 observations", f"{summary.get('p2_obs_without_hint', 0):.1f}×")
