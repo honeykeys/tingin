@@ -12,6 +12,11 @@ Log: `geth/geth-memory/2026-04-25-interface-build-handoff.md`
 
 Full pre-build grounding pass. Data stack replaced: Galli/Suominen/ISOBAR (wrong market) → California SNF stack (INTERACT + CNAHRT + MDS 3.0 + Title 22 + Adler-Milstein + Labovic + Cohen + BMC). IASHR rubric (16 criteria, 39 pts) replaces Galli HEF. Stats corrected: 88% dropped → JC 80% + Labovic 70% (CA-local) + Adler-Milstein 49.6%. Gemini judge: Pro → Flash (zero quota on Pro). OR adapter promoted to Tier 1: public at `openreward.ai/rkarlonuyda/tingin`. FE/BE contract v1.2.0 written (928+ lines, 4 schemas, 4 tools, 8 mock fixtures, floor_snapshots included). Deck design doc (`deck-frontend-design.md`) written by Karl in parallel — authoritative FE reference. All spec artifacts finalized. Zero implementation code. Next session: new chat + subagents (BE + FE in parallel at Tier 1).
 
+### 2026-04-25 — Deploy and polish (T, hackathon day, fourth session)
+Log: `geth/geth-memory/2026-04-25-interface-deploy-polish.md`
+
+Streamlit Community Cloud deployed (https://tingin-3y89vgew36f9ttyiouu8ft.streamlit.app/). OR landing page dressed for judges: Results section (81.8% fidelity, 4.67 vs 3.0 P2 observation split as attention allocator result), Hackathon Criteria section (Long Horizon / Capability Tangent / Hard but Tractable mapped), How This Was Built section (three-LLM roles, collective intelligence framing). Hack register flagged with IRB note. Em dashes and LLM writing patterns scrubbed throughout. Repo metadata set (description + homepage). Two corrections absorbed: don't expose "Geth" externally, em dashes are a tell.
+
 ### 2026-04-25 — Build complete (T, hackathon day, third session)
 Log: `geth/geth-memory/2026-04-25-interface-build-complete.md`
 
