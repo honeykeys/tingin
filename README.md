@@ -64,6 +64,30 @@ At Tier 3: LLM-judge (Gemini 2.5 Flash) with per-criterion scoring and hallucina
 
 ---
 
+## Results
+
+GPT-4.1 was run as a nurse agent against this environment. Results across 6 rollouts (3 seeds × 2 policy classes):
+
+**Handoff fidelity:** 81.8% average across both policy classes (8/10 ground-truth facts preserved — missed facts were P3 pressure ulcer status and P1 expected discharge date).
+
+**Attention allocation:** with-hint policy averaged **4.67 P2 observations per episode**; without-hint averaged **3.0**. Same fidelity, different monitoring process — the hint changes where the agent looks, not just what it reports. This is the attention allocator result: the policy that watches the at-risk patient more frequently is doing better nursing even when the terminal report looks the same.
+
+**Patient outcomes:** all 6 rollouts kept Mrs. Aquino (P2, focal deteriorating patient) stable at terminal NEWS2 ≤ 1. The scripted Run B (bad handoff, no ambient observation) demonstrates the counterfactual — deterioration to NEWS2 ≥ 7 — which the live agent consistently avoids.
+
+**Reward hack detection:** document-observation spamming (H2) was detected and patched via novelty set — only first novel observation per fact earns reward. Repeated vitals escalation without clinical threshold (H3) patched to per-deterioration-episode reward rather than per-call.
+
+---
+
+## Hackathon Criteria
+
+**Long horizon.** The two-shift episode is the demo unit, not the environment's real horizon. Long-term SNF residents — like Mr. Goldberg — stay for years until end of life. Hundreds of handoffs. Thousands of decisions. Each handoff is a compression event; what survives compounds across the full residency. The environment is designed to scale to multi-shift, multi-week rollouts.
+
+**Capability tangent.** What only emerges at scale: cross-shift memory — learning what to encode for an agent with zero prior context. Adaptation to non-stationarity — a patient's trajectory changes day by day and the agent must update its priors. Institutional knowledge accumulation across shifts — what the floor knows vs. what any single nurse knows.
+
+**Hard but tractable.** Hard: the information bottleneck is irreversible once the handoff is written. You cannot undo a missed observation. Tractable: shaped reward guides toward correct nursing behavior at every tick. Natural curriculum via census complexity — start with one focal patient, scale to mixed-acuity wards.
+
+---
+
 ## Live Demo
 
 **Streamlit app:** https://tingin-3y89vgew36f9ttyiouu8ft.streamlit.app/
