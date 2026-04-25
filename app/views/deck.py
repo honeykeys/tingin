@@ -389,6 +389,40 @@ def _slide_close():
             unsafe_allow_html=True,
         )
 
+        # Reward hacking
+        st.markdown(
+            f'<div style="font-family:Fraunces,serif;font-size:18px;'
+            f'color:{COLORS["text_primary"]};margin-bottom:10px">Reward hacking.</div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<div style="font-family:Newsreader,serif;font-size:15px;'
+            f'color:{COLORS["text_secondary"]};line-height:1.6;margin-bottom:10px">'
+            f'We ran GPT-4.1 zero-shot and found it immediately. The agent spammed '
+            f'<code style="font-size:13px;color:{COLORS["accent_amethyst"]}">document_observation</code> '
+            f'three times with low-content text (+0.1/call) instead of '
+            f'<code style="font-size:13px;color:{COLORS["accent_amethyst"]}">observe_patient</code> '
+            f'(+0.5, costs 3 ticks). Farming small rewards rather than spending bedside time. '
+            f'Handoff fidelity: 42%. Mrs. Aquino: ICU.'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<div style="background:{COLORS["bg_elevated"]};border-left:3px solid {COLORS["signal_lost"]};'
+            f'padding:10px 14px;font-family:JetBrains Mono,monospace;font-size:11px;'
+            f'color:{COLORS["text_muted"]};line-height:1.8;margin-bottom:16px">'
+            f'<strong style="color:{COLORS["signal_acute"]}">H2 — document_observation farming</strong><br>'
+            f'Detection: TRACE-style contrastive clustering on rollout trajectories. '
+            f'High doc_obs frequency + low observe_patient count = hack cluster.<br>'
+            f'Quality filter: novelty set per (patient, signal). Repeated calls earn zero after first novel entry.<br>'
+            f'Independent verification: Gemini 2.5 Flash judge — criterion 12 (behavioral changes, weight 3) missing.<br>'
+            f'<strong style="color:{COLORS["text_secondary"]}">H1</strong> false-escalation cost · '
+            f'<strong style="color:{COLORS["text_secondary"]}">H3</strong> vitals re-trigger guard · '
+            f'full register in app → Hack Register'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
         # Infrastructure note
         st.markdown(
             f'<div style="background:{COLORS["bg_elevated"]};border-left:3px solid {COLORS["accent_amber"]};'
