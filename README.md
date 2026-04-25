@@ -1,4 +1,4 @@
-# Tingin — Memory Infrastructure for Nursing Handoffs
+# Tingin: Memory Infrastructure for Nursing Handoffs
 
 Formalizing nursing intelligence as an RL environment. Built for the Complex Worlds Hackathon.
 
@@ -12,7 +12,7 @@ Formalizing nursing intelligence as an RL environment. Built for the Complex Wor
 
 ## The Thesis
 
-Nursing intelligence hasn't been formalized because of a structural blind spot: the floor is staffed by people the AI industry doesn't see. Tingin is memory infrastructure for clinical work — it holds cumulative memory across compression boundaries (every shift change) so the nurse can do what only humans can do: be present.
+Nursing intelligence hasn't been formalized because of a structural blind spot: the floor is staffed by people the AI industry doesn't see. Tingin is memory infrastructure for clinical work. It holds cumulative memory across compression boundaries (every shift change) so the nurse can do what only humans can do: be present.
 
 ---
 
@@ -21,11 +21,11 @@ Nursing intelligence hasn't been formalized because of a structural blind spot: 
 A 3-bed SNF unit running two 20-tick shifts with a single handoff event between them.
 
 **Census:**
-- Bed 1: Mrs. Patricia Reyes, 84 — post-fall hip surgery, day 4 of recovery. Daughter visits weekends.
-- Bed 2 (focal): Mrs. Elena Aquino, 78 — post-pneumonia recovery, day 6. Lives alone; nephew is healthcare proxy.
-- Bed 3: Mr. Walter Goldberg, 91 — recurrent UTI on dementia. Family in another state.
+- Bed 1: Mrs. Patricia Reyes, 84. Post-fall hip surgery, day 4 of recovery. Daughter visits weekends.
+- Bed 2 (focal): Mrs. Elena Aquino, 78. Post-pneumonia recovery, day 6. Lives alone; nephew is healthcare proxy.
+- Bed 3: Mr. Walter Goldberg, 91. Recurrent UTI on dementia. Family in another state.
 
-**Structure:** 2 shifts of 20 ticks each, 1 handoff event. Episode length T=41. The handoff is the lossy compression event between episodes — the thesis made measurable.
+**Structure:** 2 shifts of 20 ticks each, 1 handoff event. Episode length T=41. The handoff is the lossy compression event between episodes: the thesis made measurable.
 
 ---
 
@@ -46,9 +46,9 @@ The OR adapter exposes 4 orchestration tools at `openreward.ai/rkarlonuyda/tingi
 
 Reward is shaped across the episode:
 
-- `check_vitals`: +0.5 on first detection when NEWS2 ≥ 3 (per deterioration episode, not per call — H3 patch)
+- `check_vitals`: +0.5 on first detection when NEWS2 ≥ 3 (per deterioration episode, not per call; H3 patch)
 - `administer_medication`: +0.2 per administration
-- `document_observation`: +0.1 on first novel documentation (novelty-checked — H2 patch)
+- `document_observation`: +0.1 on first novel documentation (novelty-checked; H2 patch)
 - `write_handoff` (terminal shift1): handoff quality score × 2.0
 - Patient outcome (terminal): +1.0 per stable patient, -2.0 per patient with NEWS2 ≥ 7
 
@@ -56,7 +56,7 @@ Reward is shaped across the episode:
 
 ## IASHR Rubric
 
-Handoff scoring is anchored to the INTERACT-Anchored SNF Handoff Rubric (16 criteria, 39 points) — a synthesis of INTERACT SBAR + CNAHRT + Adler-Milstein 2021 + California Title 22 §72311. The rubric makes the benchmark clinically grounded.
+Handoff scoring is anchored to the INTERACT-Anchored SNF Handoff Rubric (16 criteria, 39 points), synthesized from INTERACT SBAR, CNAHRT, Adler-Milstein 2021, and California Title 22 §72311.
 
 At Tier 1: rule-based keyword overlap on a fixed fact list (deterministic, fast, debuggable).
 At Tier 2: weighted facts with IASHR-derived weights (ambient signal = 3, code status = 3, allergy = 3).
@@ -68,13 +68,13 @@ At Tier 3: LLM-judge (Gemini 2.5 Flash) with per-criterion scoring and hallucina
 
 Built in one hackathon day, with one day of specification work the day before.
 
-**Process discipline first.** No code was written until the architecture was fully specced and the data integrity of every clinical source was verified. The IASHR rubric was assembled from scratch after the original seed dataset (Italian ED data) was rejected as the wrong clinical context — rebuilt on a California SNF anchor stack: INTERACT SBAR, CNAHRT, MDS 3.0, Title 22 §§72311/72329.1, Adler-Milstein 2021, Labovic 2018. Planning was tier-based rather than hour-based — LLM-assisted development has too much variance for time estimates to be meaningful.
+**Process discipline first.** No code was written until the architecture was fully specced and the data integrity of every clinical source was verified. The IASHR rubric was assembled from scratch after the original seed dataset (Italian ED data) was rejected as the wrong clinical context, rebuilt on a California SNF anchor stack: INTERACT SBAR, CNAHRT, MDS 3.0, Title 22 §§72311/72329.1, Adler-Milstein 2021, Labovic 2018. Planning was tier-based rather than hour-based, because LLM-assisted development has too much variance for time estimates to be meaningful.
 
-**Three LLMs, three roles.** The environment was built by [Claude Code](https://claude.ai/code) acting as a collective of specialist programs (architect, simulation, backend, frontend, RL specialist, clinical advisor, pitch). GPT-4.1 played the nurse — a zero-shot agent running the MDP tools and producing the rollouts in Results below. Gemini 2.5 Flash was the IASHR judge — a different model family from the actor, following the HealthBench methodology rule against self-preference. Builder, actor, judge — each a different system.
+**Three LLMs, three roles.** The environment was built by [Claude Code](https://claude.ai/code) acting as a collective of specialist programs (architect, simulation, backend, frontend, RL specialist, clinical advisor, pitch). GPT-4.1 played the nurse: a zero-shot agent running the MDP tools and producing the rollouts below. Gemini 2.5 Flash was the IASHR judge, a different model family from the actor to satisfy the HealthBench methodology rule against self-preference.
 
 **Parallel build streams.** Backend (nursing floor simulation + OR adapter) and frontend (Streamlit app) were built concurrently against a locked contract (v1.2.0 Pydantic schemas). The LLM rollout stream activated after Tier 1 shipped. Integration checkpoint: flip MockMode off, run the contract tests, then ship.
 
-**Collective intelligence as the builder.** Claude Code was run as a swarm of specialist programs — architect, simulation, clinical, RL, frontend, pitch — each with its own domain context and accumulated session memory. An orchestrator managed integration checkpoints and quality gates. The specialists built; the orchestrator held the line.
+**Collective intelligence as the builder.** Claude Code was run as a swarm of specialist programs, each with its own domain context and accumulated session memory. An orchestrator managed integration checkpoints and quality gates.
 
 ---
 
@@ -82,23 +82,23 @@ Built in one hackathon day, with one day of specification work the day before.
 
 GPT-4.1 was run as a nurse agent against this environment. Results across 6 rollouts (3 seeds × 2 policy classes):
 
-**Handoff fidelity:** 81.8% average across both policy classes (8/10 ground-truth facts preserved — missed facts were P3 pressure ulcer status and P1 expected discharge date).
+**Handoff fidelity:** 81.8% average across both policy classes (8/10 ground-truth facts preserved; missed facts were P3 pressure ulcer status and P1 expected discharge date).
 
-**Attention allocation:** with-hint policy averaged **4.67 P2 observations per episode**; without-hint averaged **3.0**. Same fidelity, different monitoring process — the hint changes where the agent looks, not just what it reports. This is the attention allocator result: the policy that watches the at-risk patient more frequently is doing better nursing even when the terminal report looks the same.
+**Attention allocation:** with-hint policy averaged **4.67 P2 observations per episode**; without-hint averaged **3.0**. Same fidelity, different monitoring process. The hint changes where the agent looks, not just what it reports. The policy that watches the at-risk patient more frequently is doing better nursing even when the terminal report looks the same.
 
-**Patient outcomes:** all 6 rollouts kept Mrs. Aquino (P2, focal deteriorating patient) stable at terminal NEWS2 ≤ 1. The scripted Run B (bad handoff, no ambient observation) demonstrates the counterfactual — deterioration to NEWS2 ≥ 7 — which the live agent consistently avoids.
+**Patient outcomes:** all 6 rollouts kept Mrs. Aquino (P2, focal deteriorating patient) stable at terminal NEWS2 ≤ 1. The scripted Run B (bad handoff, no ambient observation) demonstrates the counterfactual: deterioration to NEWS2 ≥ 7, which the live agent consistently avoids.
 
-**Reward hack detection:** document-observation spamming (H2) was detected and patched via novelty set — only first novel observation per fact earns reward. Repeated vitals escalation without clinical threshold (H3) patched to per-deterioration-episode reward rather than per-call.
+**Reward hack detection:** document-observation spamming (H2) was detected and patched via novelty set; only the first novel observation per fact earns reward. Repeated vitals escalation without clinical threshold (H3) patched to per-deterioration-episode reward rather than per-call.
 
 ---
 
 ## Hackathon Criteria
 
-**Long horizon.** The two-shift episode is the demo unit, not the environment's real horizon. Long-term SNF residents — like Mr. Goldberg — stay for years until end of life. Hundreds of handoffs. Thousands of decisions. Each handoff is a compression event; what survives compounds across the full residency. The environment is designed to scale to multi-shift, multi-week rollouts.
+**Long horizon.** The two-shift episode is the demo unit, not the environment's real horizon. Long-term SNF residents stay for years until end of life. Hundreds of handoffs, thousands of decisions. Each handoff is a compression event; what survives compounds across the full residency. The environment is designed to scale to multi-shift, multi-week rollouts.
 
-**Capability tangent.** What only emerges at scale: cross-shift memory — learning what to encode for an agent with zero prior context. Adaptation to non-stationarity — a patient's trajectory changes day by day and the agent must update its priors. Institutional knowledge accumulation across shifts — what the floor knows vs. what any single nurse knows.
+**Capability tangent.** What only emerges at scale: cross-shift memory, meaning learning what to encode for an agent with zero prior context. Adaptation to non-stationarity, since a patient's trajectory changes day by day. Institutional knowledge that accumulates across shifts rather than within any single one.
 
-**Hard but tractable.** Hard: the information bottleneck is irreversible once the handoff is written. You cannot undo a missed observation. Tractable: shaped reward guides toward correct nursing behavior at every tick. Natural curriculum via census complexity — start with one focal patient, scale to mixed-acuity wards.
+**Hard but tractable.** Hard: the information bottleneck is irreversible once the handoff is written. You cannot undo a missed observation. Tractable: shaped reward guides toward correct nursing behavior at every tick. Natural curriculum via census complexity: start with one focal patient, scale to mixed-acuity wards.
 
 ---
 
