@@ -13,11 +13,11 @@ def render_finale_view():
         unsafe_allow_html=True,
     )
 
-    # Run both scripts and extract traces
-    if "run_a_floor" not in st.session_state:
+    # Run both scripts and extract traces (check for None, not just key absence)
+    if not st.session_state.get("run_a_floor"):
         result_a = run_scripted("run_a")
         st.session_state["run_a_floor"] = result_a["floor"]
-    if "run_b_floor" not in st.session_state:
+    if not st.session_state.get("run_b_floor"):
         result_b = run_scripted("run_b")
         st.session_state["run_b_floor"] = result_b["floor"]
 
