@@ -74,7 +74,7 @@ Built in one hackathon day, with one day of specification work the day before.
 
 **Parallel build streams.** Backend (nursing floor simulation + OR adapter) and frontend (Streamlit app) were built concurrently against a locked contract (v1.2.0 Pydantic schemas). The LLM rollout stream activated after Tier 1 shipped. Integration checkpoint: flip MockMode off, run the contract tests, then ship.
 
-**The Geth pattern.** Claude Code was orchestrated as a collective — each specialist program has its own understanding, memory, and domain. The orchestrator managed integration checkpoints, not implementation. The programs built; the orchestrator held the line on quality.
+**Collective intelligence as the builder.** Claude Code was run as a swarm of specialist programs — architect, simulation, clinical, RL, frontend, pitch — each with its own domain context and accumulated session memory. An orchestrator managed integration checkpoints and quality gates. The specialists built; the orchestrator held the line.
 
 ---
 
