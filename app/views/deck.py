@@ -296,6 +296,7 @@ def _slide_how():
             st.session_state["active_floor"] = result["floor"]
             st.session_state["current_run"] = "run_a"
             st.session_state["tool_call_feed"] = get_tool_call_feed(result["floor"])
+            st.session_state["slide"] = 4  # remember: return to slide 4
             st.session_state["view"] = "floor"
             st.rerun()
     with col2:
@@ -306,10 +307,12 @@ def _slide_how():
             st.session_state["active_floor"] = result["floor"]
             st.session_state["current_run"] = "run_b"
             st.session_state["tool_call_feed"] = get_tool_call_feed(result["floor"])
+            st.session_state["slide"] = 4  # remember: return to slide 4
             st.session_state["view"] = "floor"
             st.rerun()
     with col3:
         if st.button("▤ Handoff view", key="deck_handoff", use_container_width=True):
+            st.session_state["slide"] = 4  # remember: return to slide 4
             st.session_state["view"] = "handoff"
             st.rerun()
 

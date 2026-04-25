@@ -29,6 +29,8 @@ def init_session_state():
         st.session_state["mock_mode"] = False
     if "view" not in st.session_state:
         st.session_state["view"] = "floor"
+    if "slide" not in st.session_state:
+        st.session_state["slide"] = 1
     if "current_run" not in st.session_state:
         st.session_state["current_run"] = None
     if "run_a_floor" not in st.session_state:
@@ -137,7 +139,6 @@ def main():
         st.markdown("**Presentation**")
         if st.button("◆ Pitch deck", key="nav_deck", use_container_width=True):
             st.session_state["view"] = "deck"
-            st.session_state["slide"] = 1
             st.rerun()
 
         st.divider()
