@@ -1,0 +1,40 @@
+# secrets
+.env
+
+# personal photos (pitch deck assets — keep local only)
+assets/*.jpeg
+assets/*.jpg
+assets/*.png
+
+# scratch data and downloads
+.scratch/
+
+# python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# macos
+.DS_Store
+**/.DS_Store
+
+# editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# demo rollout cache (committed selectively)
+demo/judge_cache.json
+
+# streamlit
+.streamlit/secrets.toml
