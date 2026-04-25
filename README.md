@@ -64,6 +64,20 @@ At Tier 3: LLM-judge (Gemini 2.5 Flash) with per-criterion scoring and hallucina
 
 ---
 
+## How This Was Built
+
+Built in one hackathon day, with one day of specification work the day before.
+
+**Process discipline first.** No code was written until the architecture was fully specced and the data integrity of every clinical source was verified. The IASHR rubric was assembled from scratch after the original seed dataset (Italian ED data) was rejected as the wrong clinical context — rebuilt on a California SNF anchor stack: INTERACT SBAR, CNAHRT, MDS 3.0, Title 22 §§72311/72329.1, Adler-Milstein 2021, Labovic 2018. Planning was tier-based rather than hour-based — LLM-assisted development has too much variance for time estimates to be meaningful.
+
+**Three LLMs, three roles.** The environment was built by [Claude Code](https://claude.ai/code) acting as a collective of specialist programs (architect, simulation, backend, frontend, RL specialist, clinical advisor, pitch). GPT-4.1 played the nurse — a zero-shot agent running the MDP tools and producing the rollouts in Results below. Gemini 2.5 Flash was the IASHR judge — a different model family from the actor, following the HealthBench methodology rule against self-preference. Builder, actor, judge — each a different system.
+
+**Parallel build streams.** Backend (nursing floor simulation + OR adapter) and frontend (Streamlit app) were built concurrently against a locked contract (v1.2.0 Pydantic schemas). The LLM rollout stream activated after Tier 1 shipped. Integration checkpoint: flip MockMode off, run the contract tests, then ship.
+
+**The Geth pattern.** Claude Code was orchestrated as a collective — each specialist program has its own understanding, memory, and domain. The orchestrator managed integration checkpoints, not implementation. The programs built; the orchestrator held the line on quality.
+
+---
+
 ## Results
 
 GPT-4.1 was run as a nurse agent against this environment. Results across 6 rollouts (3 seeds × 2 policy classes):
